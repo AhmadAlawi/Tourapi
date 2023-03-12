@@ -9,9 +9,9 @@ const { connect } = require('mongoose');
 			useUnifiedTopology: true,
 			useCreateIndex: true,
 			useFindAndModify: false
-		});
+		}); 
 	} catch (error) {
-		console.error(error);
+		console.error(error);  
 	}
 })();
 
