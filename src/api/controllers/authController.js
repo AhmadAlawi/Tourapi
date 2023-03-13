@@ -15,6 +15,8 @@ const signToken = (id) => {
 
 const sendCreatedToken = (user, statusCode, res) => {
 	const token = signToken(user._id);
+	
+	
 
 	// SEND TOKEN VIA COOKIE
 	const cookieOptions = {
@@ -25,11 +27,12 @@ const sendCreatedToken = (user, statusCode, res) => {
 	};
 	if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 	res.cookie('jwt', token, cookieOptions);
-
+const userId = user._id;
 	res.status(statusCode).json({
 		status: 'success',
 		data: {
-			user
+			// user
+			userId
 		},
 		token
 	});
@@ -73,6 +76,7 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
 
 	// SEND TOKEN TO USER
 	sendCreatedToken(user, 200, res);
+	
 });
 
 exports.protect = catchAsyncErrors(async (req, res, next) => {
@@ -142,6 +146,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
 	// GENERATE THE RESET TOKEN
 	const resetToken = user.createPasswordResetToken();
+	console.log(resetToken);
 	await user.save({ validateBeforeSave: false });
 
 	// SEND THE TOKEN TO USER'S EMAIL
@@ -162,7 +167,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 		user.passwordResetToken = undefined;
 		user.passwordResetExpires = undefined;
 		await user.save({ validateBeforeSave: false });
-
+		console.log(err.message);
 		return new AppError(
 			'There was a error sending the email. Try again later!',
 			500

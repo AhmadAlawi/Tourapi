@@ -32,11 +32,13 @@ exports.updateMe = catchAsyncErrors(async (req, res, next) => {
 		new: true,
 		runValidators: true
 	});
-
+const name=user.name;
+const email=user.email;
 	res.status(200).json({
 		status: 'success',
 		data: {
-			user
+			name,
+			email
 		}
 	});
 });

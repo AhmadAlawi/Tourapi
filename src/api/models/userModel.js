@@ -51,7 +51,7 @@ const userSchmea = new Schema({
 		select: false
 	},
 	passwordChangedAt: Date,
-	passwordResetToken: String,
+	// passwordResetToken: String,
 	passwordResetExpires: Date
 });
 

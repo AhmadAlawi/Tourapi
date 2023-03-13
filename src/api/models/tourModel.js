@@ -76,16 +76,16 @@ const tourSchema = new Schema(
 			type: Boolean,
 			default: false
 		},
-		startLocation: {
-			type: {
-				type: String,
-				enum: ['Point'],
-				default: 'Point'
-			},
-			coordinates: [Number],
-			address: String,
-			description: String
-		},
+		// startLocation: {
+		// 	type: {
+		// 		type: String,
+		// 		enum: ['Point'],
+		// 		default: 'Point'
+		// 	},
+		// 	coordinates: [Number],
+		// 	address: String,
+		// 	description: String
+		// },
 		locations: [
 			{
 				type: {
